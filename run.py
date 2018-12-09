@@ -14,3 +14,13 @@ PASSWORD = 'QWERTY1234'
 BORDER = 6
 INIT_LEFT = 60
 
+class CrackGeetest(object):
+    def __init__(self):
+        '''
+        初始化
+        '''
+        self.url = 'https://account.geetest.com/login'
+        self.browser = webdriver.Chrome()
+        self.wait = WebDriverWait(self.browser, 20)
+        self.email = EMAIL
+        self.password = PASSWORD
