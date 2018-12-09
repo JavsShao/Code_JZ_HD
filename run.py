@@ -127,7 +127,6 @@ class CrackGeetest(object):
         else:
             return False
 
-
     def get_track(self, distance):
         """
         根据偏移量获取移动轨迹
@@ -176,3 +175,13 @@ class CrackGeetest(object):
             ActionChains(self.browser).move_by_offset(xoffset=x, yoffset=0).perform()
         time.sleep(0.5)
         ActionChains(self.browser).release().perform()
+
+    def login(self):
+        """
+        登录
+        :return: None
+        """
+        submit = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'login-btn')))
+        submit.click()
+        time.sleep(10)
+        print('登录成功')
