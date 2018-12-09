@@ -107,3 +107,22 @@ class CrackGeetest(object):
                     left = i
                     return left
             return left
+
+    def is_pixel_equal(self, image_1, image_2, x, y):
+        '''
+        判断两个像素是否相同
+        :param image_1: 图片1
+        :param image_2: 图片2
+        :param x: 位置x
+        :param y: 位置y
+        :return: 像素是否相同
+        '''
+        # 取两个图片的像素点
+        pixel1 = image_1.load()[x, y]
+        pixel2 = image_2.load()[x, y]
+        threshold = 60
+        if abs(pixel1[0] - pixel2[0]) < threshold and abs(pixel1[1] - pixel2[1]) < threshold and abs(
+                pixel1[2] - pixel2[2]) < threshold:
+            return True
+        else:
+            return False
