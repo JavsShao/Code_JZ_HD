@@ -70,3 +70,12 @@ class CrackGeetest(object):
         '''
         slider = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_slider_button')))
         return slider
+
+    def get_screenshot(self):
+        '''
+        获取网页截图
+        :return: 截图对象
+        '''
+        screenshot = self.browser.get_screenshot_as_png()
+        screenshot = Image.open(BytesIO(screenshot))
+        return screenshot
