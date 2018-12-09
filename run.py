@@ -31,3 +31,15 @@ class CrackGeetest(object):
         :return:
         '''
         self.browser.close()
+
+    def get_position(self):
+        '''
+        获取验证码位置
+        :return: 验证码位置元组
+        '''
+        img = self.wait.until((EC.presence_of_element_located(By.CLASS_NAME, 'geetest_canvas_img')))
+        time.sleep(2)
+        location = img.location
+        size = img.size
+        top, bottom, left, right = location['y'], location['y'] + size['height'], location['x'], location['x'] + size['width']
+        return (top, bottom, left, right)
