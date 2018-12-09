@@ -127,6 +127,7 @@ class CrackGeetest(object):
         else:
             return False
 
+
     def get_track(self, distance):
         """
         根据偏移量获取移动轨迹
