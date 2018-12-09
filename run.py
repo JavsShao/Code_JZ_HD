@@ -93,7 +93,7 @@ class CrackGeetest(object):
         captcha.save(name)
         return captcha
 
-    def get_rap(self, image_1, image_2):
+    def get_gap(self, image_1, image_2):
         '''
         获取缺口偏移量
         :param image_1: 不带缺口的图片
