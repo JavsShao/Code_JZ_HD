@@ -24,3 +24,10 @@ class CrackGeetest(object):
         self.wait = WebDriverWait(self.browser, 20)
         self.email = EMAIL
         self.password = PASSWORD
+
+    def __del__(self):
+        '''
+        关闭浏览器
+        :return:
+        '''
+        self.browser.close()
