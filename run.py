@@ -62,3 +62,11 @@ class CrackGeetest(object):
         size = img.size
         top, bottom, left, right = location['y'], location['y'] + size['height'], location['x'], location['x'] + size['width']
         return (top, bottom, left, right)
+
+    def get_slider(self):
+        '''
+        获取滑块
+        :return: 滑块对象
+        '''
+        slider = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_slider_button')))
+        return slider
