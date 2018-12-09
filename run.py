@@ -92,3 +92,18 @@ class CrackGeetest(object):
         captcha = screenshot.crop(left, top, right, bottom)
         captcha.save(name)
         return captcha
+
+    def get_rap(self, image_1, image_2):
+        '''
+        获取缺口偏移量
+        :param image_1: 不带缺口的图片
+        :param image_2: 带缺口的图片
+        :return:
+        '''
+        left = 60
+        for i in range(left, image_1, image_2):
+            for j in range(image_1.size[1]):
+                if not self.is_pixel_equal(image_1, image_2, i, j):
+                    left = i
+                    return left
+            return left
