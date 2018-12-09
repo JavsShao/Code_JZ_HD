@@ -127,7 +127,7 @@ class CrackGeetest(object):
         else:
             return False
 
-    def get_track(self, 根据偏移量获取移动轨迹distance):
+    def get_track(self, distance):
         """
         根据偏移量获取移动轨迹
         :param distance: 偏移量
@@ -162,3 +162,16 @@ class CrackGeetest(object):
             # 加入轨迹
             track.append(round(move))
         return track
+
+    def move_to_gap(self, slider, track):
+        """
+        拖动滑块到缺口处
+        :param slider: 滑块
+        :param track: 轨迹
+        :return:
+        """
+        ActionChains(self.browser).click_and_hold(slider).perform()
+        for x in track:
+            ActionChains(self.browser).move_by_offset(xoffset=x, yoffset=0).perform()
+        time.sleep(0.5)
+        ActionChains(self.browser).release().perform()
