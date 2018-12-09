@@ -185,3 +185,39 @@ class CrackGeetest(object):
         submit.click()
         time.sleep(10)
         print('登录成功')
+
+    def crack(self):
+        # 输入用户名密码
+        self.open()
+        # 点击验证按钮
+        button = self.get_geetest_button()
+        button.click()
+        # 点按呼出缺口
+        slider = self.get_slider()
+        slider.click()
+        # 获取带缺口的验证码图片
+        image2 = self.get_geetest_image('captcha2.png')
+        # 2、执行js改变css样式，显示背景图
+        self.browser.execute_script('document.querySelectorAll("canvas")[2].style=""')
+        image1 = self.get_geetest_image('captcha1.png')
+        time.sleep(1)
+        # 获取缺口位置
+        gap = self.get_gap(image1, image2)
+        print('缺口位置', gap)
+        # 减去缺口位移
+        gap -= BORDER
+        # 获取移动轨迹
+        track = self.get_track(gap)
+        print('滑动轨迹', track)
+        # 拖动滑块
+        self.move_to_gap(slider, track)
+
+        success = self.wait.until(
+            EC.text_to_be_present_in_element((By.CLASS_NAME, 'geetest_success_radar_tip_content'), '验证成功'))
+        print(success)
+
+        # 失败后重试
+        if not success:
+            self.crack()
+        else:
+            self.login()
