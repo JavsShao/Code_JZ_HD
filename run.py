@@ -43,6 +43,14 @@ class CrackGeetest(object):
         email.send_keys(self.email)
         password.send_keys(self.password)
 
+    def get_geetest_button(self):
+        '''
+        获取初始验证按钮
+        :return:
+        '''
+        button = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'geetest_radar_tip')))
+        return button
+
     def get_position(self):
         '''
         获取验证码位置
