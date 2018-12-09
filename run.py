@@ -79,3 +79,16 @@ class CrackGeetest(object):
         screenshot = self.browser.get_screenshot_as_png()
         screenshot = Image.open(BytesIO(screenshot))
         return screenshot
+
+    def get_geetest_image(self, name='captcha.png'):
+        '''
+        获取验证码图片
+        :param name:
+        :return: 图片对象
+        '''
+        top, bottom, left, right = self.get_position()
+        print('验证码位置:', top, bottom, left, right)
+        screenshot = self.get_screenshot()
+        captcha = screenshot.crop(left, top, right, bottom)
+        captcha.save(name)
+        return captcha
